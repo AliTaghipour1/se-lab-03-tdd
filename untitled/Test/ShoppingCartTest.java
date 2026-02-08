@@ -22,6 +22,17 @@ public class ShoppingCartTest {
         assertEquals(0.0, cart.getTotal());
     }
 
+    @Test
+    public void testRemoveItemNotExists() {
+        ShoppingCart cart = new ShoppingCart();
+        cart.addItem("Pen", 5);
+        boolean removed = cart.removeItem("Pencil");
+
+        assertFalse(removed);
+        assertEquals(1, cart.getItemCount());
+        assertEquals(5.0, cart.getTotal());
+    }
+
 
     @Test
     public void testDiscountAtBoundary() {
