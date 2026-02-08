@@ -3,10 +3,10 @@ import java.util.Map;
 
 public class ShoppingCart {
 
-    private Map<String, Double> items = new HashMap<>();
+    private final Map<String, Item> items = new HashMap<>();
 
     public void addItem(String name, double price) {
-        items.put(name, price);
+        items.put(name, new Item(name, price));
     }
 
     public boolean removeItem(String name) {
@@ -19,8 +19,8 @@ public class ShoppingCart {
 
     public double getTotal() {
         double total = 0.0;
-        for (double price : items.values()) {
-            total += price;
+        for (Item item : items.values()) {
+            total += item.getPrice();
         }
         return total;
     }
@@ -42,7 +42,8 @@ public class ShoppingCart {
             return;
         }
 
-        items.put(name, newPrice);
+        Item item = items.get(name);
+        item.setPrice(newPrice);
     }
 
 }
